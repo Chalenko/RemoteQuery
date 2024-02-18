@@ -1,9 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery", "RemoteQuery\RemoteQuery.csproj", "{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WinForms", "RemoteQuery.WinForms\RemoteQuery.WinForms.csproj", "{EEFD6EAE-50F0-4C69-A36B-E754F87FAEA1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F} = {4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WebForms", "RemoteQuery.WebForms\RemoteQuery.WebForms.csproj", "{3D70C53B-9BCE-43CB-B652-F920C6230246}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F} = {4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WebForms.Tests", "RemoteQuery.WebForms.Tests\RemoteQuery.WebForms.Tests.csproj", "{081E0948-1459-4954-9BF6-758C14CB14BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +27,23 @@ Global
 		{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEFD6EAE-50F0-4C69-A36B-E754F87FAEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEFD6EAE-50F0-4C69-A36B-E754F87FAEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEFD6EAE-50F0-4C69-A36B-E754F87FAEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEFD6EAE-50F0-4C69-A36B-E754F87FAEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D70C53B-9BCE-43CB-B652-F920C6230246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D70C53B-9BCE-43CB-B652-F920C6230246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D70C53B-9BCE-43CB-B652-F920C6230246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D70C53B-9BCE-43CB-B652-F920C6230246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{081E0948-1459-4954-9BF6-758C14CB14BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{081E0948-1459-4954-9BF6-758C14CB14BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{081E0948-1459-4954-9BF6-758C14CB14BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{081E0948-1459-4954-9BF6-758C14CB14BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6479025A-4E0A-44A7-AB3A-A741A4E0E381}
 	EndGlobalSection
 EndGlobal
