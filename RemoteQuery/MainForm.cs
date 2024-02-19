@@ -15,12 +15,15 @@ namespace RemoteQuery
     public partial class MainForm : Form
     {
         DatabaseContext dbContext;
-        IConnectionString connection;
 
         public MainForm()
         {
             InitializeComponent();
             dgvResult.DataSource = bsResult;
+            cmbConnectionType.DisplayMember = nameof(ConnectionString.ConnectionStringDisplayField);
+            cmbConnectionType.Items.AddRange(new object[] {
+                SQLConnectionString.Instance,
+                WindowsConnectionString.Instance});
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
@@ -32,23 +35,19 @@ namespace RemoteQuery
 
         private string getStringConnection()
         {
-            if (cmbConnectionType.Text == "SQL")
-                connection = SQLConnectionString.Instance;
-            if (cmbConnectionType.Text == "Windows")
-                connection = WindowsConnectionString.Instance;
-            return connection.GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
+            return ((IConnectionString)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
         }
 
         private void cmbConnectionType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbConnectionType.SelectedItem.Equals("SQL"))
+            if (cmbConnectionType.SelectedItem.Equals(SQLConnectionString.Instance))
             {
                 tbUserName.ReadOnly = false;
                 tbUserName.Text = "";
                 tbUserPassword.ReadOnly = false;
                 tbUserPassword.Text = "";
             }
-            if (cmbConnectionType.SelectedItem.Equals("Windows"))
+            if (cmbConnectionType.SelectedItem.Equals(WindowsConnectionString.Instance))
             {
                 tbUserName.ReadOnly = true;
                 tbUserName.Text = string.Format("{0}\\{1}", Environment.UserDomainName, Environment.UserName);

@@ -14,7 +14,8 @@ namespace RemoteQuery
     public abstract class ConnectionString : IConnectionString
     {
         protected readonly string _ConnectionString;
-        protected static IConnectionString _instance;
+
+        public string ConnectionStringDisplayField { get; protected set; }
 
         public string ServerName { get; set; }
         public string DBName { get; set; }
@@ -31,7 +32,12 @@ namespace RemoteQuery
 
     public class SQLConnectionString : ConnectionString
     {
-        private SQLConnectionString() : base("Data Source={0}; Initial Catalog={1}; User ID={2}; Password={3}; Timeout=60000;") { }
+        protected static IConnectionString _instance;
+
+        private SQLConnectionString() : base("Data Source={0}; Initial Catalog={1}; User ID={2}; Password={3}; Timeout=60000;") 
+        {
+            ConnectionStringDisplayField = "SQL"; 
+        }
 
         public static IConnectionString Instance
         {
@@ -51,7 +57,12 @@ namespace RemoteQuery
 
     public class WindowsConnectionString : ConnectionString
     {
-        private WindowsConnectionString() : base("Data Source={0}; Initial Catalog={1}; Integrated Security=True; Timeout=60000;") { }
+        protected static IConnectionString _instance;
+
+        private WindowsConnectionString() : base("Data Source={0}; Initial Catalog={1}; Integrated Security=True; Timeout=60000;") 
+        {
+            ConnectionStringDisplayField = "Windows"; 
+        }
 
         public static IConnectionString Instance
         {
