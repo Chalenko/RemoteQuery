@@ -1,4 +1,4 @@
-﻿namespace RemoteQuery
+﻿namespace RemoteQuery.WinForms
 {
     partial class MainForm
     {

@@ -7,10 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Xml.Linq;
 
-namespace RemoteQuery
+namespace RemoteQuery.WinForms
 {
     public partial class MainForm : Form
     {
