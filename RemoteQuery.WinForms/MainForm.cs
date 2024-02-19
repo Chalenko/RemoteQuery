@@ -18,7 +18,10 @@ namespace RemoteQuery.WinForms
         {
             InitializeComponent();
             dgvResult.DataSource = bsResult;
-            //CurrentUser.Instance.Login.ToString();
+            cmbConnectionType.DisplayMember = nameof(ConnectionStringType.DisplayName);
+            cmbConnectionType.Items.AddRange(new object[] {
+                ConnectionStringType.SQLConnectionStringType,
+                ConnectionStringType.WindowsConnectionStringType});
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
@@ -26,34 +29,22 @@ namespace RemoteQuery.WinForms
             dbContext = DatabaseContext.getInstance(getStringConnection());
             bsResult.DataSource = dbContext.LoadFromDatabase(tbQuery.Text, CommandType.Text);
             tcMain.SelectedTab = tpResult;
-            //dgvResult.Columns["c"].Visible = false;
         }
 
         private string getStringConnection()
         {
-            if (cmbConnectionType.Text == "SQL")
-                return string.Format("Data Source={0}; Initial Catalog={1}; User ID={2}; Password={3}; Timeout=60000;", tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
-            if (cmbConnectionType.Text == "Windows")
-                return string.Format("Data Source={0}; Initial Catalog={1}; Integrated Security=True; Timeout=60000;", tbServerName.Text.Trim(), tbDBName.Text.Trim());
-            return "";
+            return ((IConnectionStringType)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
         }
 
         private void cmbConnectionType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbConnectionType.SelectedItem.Equals("SQL"))
-            {
-                tbUserName.ReadOnly = false;
-                tbUserName.Text = "";
-                tbUserPassword.ReadOnly = false;
-                tbUserPassword.Text = "";
-            }
-            if (cmbConnectionType.SelectedItem.Equals("Windows"))
-            {
-                tbUserName.ReadOnly = true;
-                tbUserName.Text = string.Format("{0}\\{1}", Environment.UserDomainName, Environment.UserName);
-                tbUserPassword.ReadOnly = true;
-                tbUserPassword.Text = "";
-            }
+            var usernameState = ((IConnectionStringType)cmbConnectionType.SelectedItem).GetUserNameState();
+            var passwordState = ((IConnectionStringType)cmbConnectionType.SelectedItem).GetUserPasswordState();
+
+            tbUserName.ReadOnly = !usernameState.IsEditable;
+            tbUserName.Text = usernameState.Name;
+            tbUserPassword.ReadOnly = !passwordState.IsEditable;
+            tbUserPassword.Text = passwordState.Password;
         }
     }
 }
