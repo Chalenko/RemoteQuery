@@ -9,11 +9,14 @@ namespace RemoteQuery
     public interface IConnectionStringType
     {
         string GetConnectionString(string serverName, string dbName, string userName, string userPassword);
+        UserNameState GetUserNameState();
+
+        UserPasswordState GetUserPasswordState();
     }
 
     public abstract class ConnectionStringType : IConnectionStringType
     {
-        protected readonly string _ConnectionString;
+        internal readonly string _ConnectionString;
 
         public string DisplayName { get; protected set; }
 
@@ -28,6 +31,8 @@ namespace RemoteQuery
         }
 
         public abstract string GetConnectionString(string serverName, string dbName, string userName, string userPassword);
+        public abstract UserNameState GetUserNameState();
+        public abstract UserPasswordState GetUserPasswordState();
 
         public static SQLConnectionStringType SQLConnectionStringType 
         {
@@ -69,6 +74,9 @@ namespace RemoteQuery
         {
            return string.Format(_ConnectionString, serverName, dbName, userName, userPassword);
         }
+
+        public override UserNameState GetUserNameState() => new UserNameState() { IsEditable = true, Name = string.Empty };
+        public override UserPasswordState GetUserPasswordState() => new UserPasswordState() { IsEditable = true, Password = string.Empty };
     }
 
     public class WindowsConnectionStringType : ConnectionStringType
@@ -94,5 +102,20 @@ namespace RemoteQuery
         {
             return string.Format(_ConnectionString, serverName, dbName);
         }
+
+        public override UserNameState GetUserNameState() => new UserNameState() { IsEditable = false, Name = string.Format("{0}\\{1}", Environment.UserDomainName, Environment.UserName) };
+        public override UserPasswordState GetUserPasswordState() => new UserPasswordState() { IsEditable = false, Password = string.Empty };
+    }
+
+    public class UserNameState
+    {
+        public bool IsEditable { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class UserPasswordState
+    {
+        public bool IsEditable { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -40,20 +40,13 @@ namespace RemoteQuery
 
         private void cmbConnectionType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbConnectionType.SelectedItem.Equals(ConnectionStringType.SQLConnectionStringType))
-            {
-                tbUserName.ReadOnly = false;
-                tbUserName.Text = "";
-                tbUserPassword.ReadOnly = false;
-                tbUserPassword.Text = "";
-            }
-            if (cmbConnectionType.SelectedItem.Equals(ConnectionStringType.WindowsConnectionStringType))
-            {
-                tbUserName.ReadOnly = true;
-                tbUserName.Text = string.Format("{0}\\{1}", Environment.UserDomainName, Environment.UserName);
-                tbUserPassword.ReadOnly = true;
-                tbUserPassword.Text = "";
-            }
+            var usernameState = ((IConnectionStringType)cmbConnectionType.SelectedItem).GetUserNameState();
+            var passwordState = ((IConnectionStringType)cmbConnectionType.SelectedItem).GetUserPasswordState();
+
+            tbUserName.ReadOnly = !usernameState.IsEditable;
+            tbUserName.Text = usernameState.Name;
+            tbUserPassword.ReadOnly = !passwordState.IsEditable;
+            tbUserPassword.Text = passwordState.Password;
         }
     }
 }
