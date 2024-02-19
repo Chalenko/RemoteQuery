@@ -165,9 +165,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbConnectionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConnectionType.FormattingEnabled = true;
-            this.cmbConnectionType.Items.AddRange(new object[] {
-            "SQL",
-            "Windows"});
             this.cmbConnectionType.Location = new System.Drawing.Point(138, 72);
             this.cmbConnectionType.Name = "cmbConnectionType";
             this.cmbConnectionType.Size = new System.Drawing.Size(762, 21);

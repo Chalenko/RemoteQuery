@@ -20,10 +20,10 @@ namespace RemoteQuery
         {
             InitializeComponent();
             dgvResult.DataSource = bsResult;
-            cmbConnectionType.DisplayMember = nameof(ConnectionString.ConnectionStringDisplayField);
+            cmbConnectionType.DisplayMember = nameof(ConnectionStringType.DisplayName);
             cmbConnectionType.Items.AddRange(new object[] {
-                SQLConnectionString.Instance,
-                WindowsConnectionString.Instance});
+                ConnectionStringType.SQLConnectionStringType,
+                ConnectionStringType.WindowsConnectionStringType});
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
@@ -35,19 +35,19 @@ namespace RemoteQuery
 
         private string getStringConnection()
         {
-            return ((IConnectionString)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
+            return ((IConnectionStringType)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
         }
 
         private void cmbConnectionType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbConnectionType.SelectedItem.Equals(SQLConnectionString.Instance))
+            if (cmbConnectionType.SelectedItem.Equals(ConnectionStringType.SQLConnectionStringType))
             {
                 tbUserName.ReadOnly = false;
                 tbUserName.Text = "";
                 tbUserPassword.ReadOnly = false;
                 tbUserPassword.Text = "";
             }
-            if (cmbConnectionType.SelectedItem.Equals(WindowsConnectionString.Instance))
+            if (cmbConnectionType.SelectedItem.Equals(ConnectionStringType.WindowsConnectionStringType))
             {
                 tbUserName.ReadOnly = true;
                 tbUserName.Text = string.Format("{0}\\{1}", Environment.UserDomainName, Environment.UserName);

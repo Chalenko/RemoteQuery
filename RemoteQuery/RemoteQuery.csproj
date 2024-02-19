@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionString.cs" />
+    <Compile Include="ConnectionStringType.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="MainForm.cs">
