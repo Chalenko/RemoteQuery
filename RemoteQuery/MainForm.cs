@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Xml.Linq;
 
 namespace RemoteQuery
 {
@@ -31,10 +33,10 @@ namespace RemoteQuery
         private string getStringConnection()
         {
             if (cmbConnectionType.Text == "SQL")
-                connection = new SQLConnectionString() { ServerName = tbServerName.Text.Trim(), DBName = tbDBName.Text.Trim(), UserName = tbUserName.Text.Trim(), UserPassword = tbUserPassword.Text.Trim() };
+                connection = SQLConnectionString.Instance;
             if (cmbConnectionType.Text == "Windows")
-                connection = new WindowsConnectionString() { ServerName = tbServerName.Text.Trim(), DBName = tbDBName.Text.Trim(), UserName = tbUserName.Text.Trim(), UserPassword = tbUserPassword.Text.Trim() };
-            return connection.GetConnectionString();
+                connection = WindowsConnectionString.Instance;
+            return connection.GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
         }
 
         private void cmbConnectionType_SelectedIndexChanged(object sender, EventArgs e)
