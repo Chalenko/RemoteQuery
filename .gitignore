@@ -25,3 +25,7 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 .vs
+[Tt]est[Rr]esult*
+packages/
+*.coverage
+logs/
