@@ -3,9 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace RemoteQuery
+namespace RemoteQuery.Models
 {
+    public class UserNameState
+    {
+        public string Name { get; private set; }
+        public bool IsEditable { get; private set; }
+
+        public UserNameState(string name, bool isEditable) 
+        {
+            Name = name;
+            IsEditable = isEditable;
+        }
+    }
+
+    public class UserPasswordState
+    {
+        public string Password { get; private set; }
+        public bool IsEditable { get; private set; }
+
+        public UserPasswordState(string password, bool isEditable)
+        {
+            Password = password;
+            IsEditable = isEditable;
+        }
+    }
+
     public interface IConnectionStringType
     {
         string GetConnectionString(string serverName, string dbName, string userName, string userPassword);
@@ -75,8 +100,8 @@ namespace RemoteQuery
            return string.Format(_ConnectionString, serverName, dbName, userName, userPassword);
         }
 
-        public override UserNameState GetUserNameState() => new UserNameState() { IsEditable = true, Name = string.Empty };
-        public override UserPasswordState GetUserPasswordState() => new UserPasswordState() { IsEditable = true, Password = string.Empty };
+        public override UserNameState GetUserNameState() => new UserNameState(string.Empty, true);
+        public override UserPasswordState GetUserPasswordState() => new UserPasswordState(string.Empty, true);
     }
 
     public class WindowsConnectionStringType : ConnectionStringType
@@ -103,19 +128,7 @@ namespace RemoteQuery
             return string.Format(_ConnectionString, serverName, dbName);
         }
 
-        public override UserNameState GetUserNameState() => new UserNameState() { IsEditable = false, Name = string.Format("{0}\\{1}", Environment.UserDomainName, Environment.UserName) };
-        public override UserPasswordState GetUserPasswordState() => new UserPasswordState() { IsEditable = false, Password = string.Empty };
-    }
-
-    public class UserNameState
-    {
-        public bool IsEditable { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class UserPasswordState
-    {
-        public bool IsEditable { get; set; }
-        public string Password { get; set; }
+        public override UserNameState GetUserNameState() => new UserNameState(string.Format("{0}\\{1}", Environment.UserDomainName, Environment.UserName), false);
+        public override UserPasswordState GetUserPasswordState() => new UserPasswordState(string.Empty, false);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RemoteQuery.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace RemoteQuery.WinForms
     public partial class MainForm : Form
     {
         DatabaseContext dbContext;
+        RemoteQuery.Models.RemoteQuery query;
 
         public MainForm()
         {
