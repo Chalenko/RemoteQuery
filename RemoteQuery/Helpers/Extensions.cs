@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RemoteQuery
+namespace RemoteQuery.Helpers
 {
     public static class Extensions
     {

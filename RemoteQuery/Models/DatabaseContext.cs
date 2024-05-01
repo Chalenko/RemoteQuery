@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Data;
 
 
-namespace RemoteQuery
+namespace RemoteQuery.Models
 {
     /// <summary>
     /// Класс для работы с запросами в БД
