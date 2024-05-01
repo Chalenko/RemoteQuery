@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
+using RemoteQuery.Helpers;
 
 
 namespace RemoteQuery.Models
