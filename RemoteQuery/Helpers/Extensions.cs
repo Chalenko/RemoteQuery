@@ -37,9 +37,9 @@ namespace RemoteQuery.Helpers
 
             int i = 0;
             foreach (var item in obj.GetType().GetProperties())
-	        {
+            {
                 result[i++] = item.GetValue(obj, null);
-	        }
+            }
 
             return result;
         }

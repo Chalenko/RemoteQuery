@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WebForms", "Rem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WebForms.Tests", "RemoteQuery.WebForms.Tests\RemoteQuery.WebForms.Tests.csproj", "{081E0948-1459-4954-9BF6-758C14CB14BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WPF", "RemoteQuery.WPF\RemoteQuery.WPF.csproj", "{CA2BF591-82DC-44EA-B4D9-E540E7986599}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{081E0948-1459-4954-9BF6-758C14CB14BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{081E0948-1459-4954-9BF6-758C14CB14BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{081E0948-1459-4954-9BF6-758C14CB14BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2BF591-82DC-44EA-B4D9-E540E7986599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2BF591-82DC-44EA-B4D9-E540E7986599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2BF591-82DC-44EA-B4D9-E540E7986599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2BF591-82DC-44EA-B4D9-E540E7986599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
