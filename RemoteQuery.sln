@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery", "RemoteQuery\RemoteQuery.csproj", "{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.Model", "RemoteQuery.Model\RemoteQuery.Model.csproj", "{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WinForms", "RemoteQuery.WinForms\RemoteQuery.WinForms.csproj", "{EEFD6EAE-50F0-4C69-A36B-E754F87FAEA1}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WebForms", "Rem
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WebForms.Tests", "RemoteQuery.WebForms.Tests\RemoteQuery.WebForms.Tests.csproj", "{081E0948-1459-4954-9BF6-758C14CB14BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.Utils", "RemoteQuery.Utils\RemoteQuery.Utils.csproj", "{95353D55-2E2E-4977-90ED-3DE4607F65A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{081E0948-1459-4954-9BF6-758C14CB14BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{081E0948-1459-4954-9BF6-758C14CB14BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{081E0948-1459-4954-9BF6-758C14CB14BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95353D55-2E2E-4977-90ED-3DE4607F65A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95353D55-2E2E-4977-90ED-3DE4607F65A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95353D55-2E2E-4977-90ED-3DE4607F65A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95353D55-2E2E-4977-90ED-3DE4607F65A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
