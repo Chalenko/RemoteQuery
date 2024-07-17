@@ -9,7 +9,7 @@ namespace RemoteQuery.Models
     public class RemoteQuery
     {
         private Credentials credentials = new Credentials();
-        public ConnectionStringType ConnectionType => credentials.ConnectionType;
+        public IAuthenticationType ConnectionType => credentials.ConnectionType;
         public string UserName => credentials.UserName;
         public string Password => credentials.Password;
         public bool IsUserNameEditable => credentials.ConnectionType.GetUserNameState().IsEditable;

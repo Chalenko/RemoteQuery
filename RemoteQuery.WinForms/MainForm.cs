@@ -20,10 +20,10 @@ namespace RemoteQuery.WinForms
         {
             InitializeComponent();
             dgvResult.DataSource = bsResult;
-            cmbConnectionType.DisplayMember = nameof(ConnectionStringType.DisplayName);
+            cmbConnectionType.DisplayMember = nameof(AuthenticationType.DisplayName);
             cmbConnectionType.Items.AddRange(new object[] {
-                ConnectionStringType.SQLConnectionStringType,
-                ConnectionStringType.WindowsConnectionStringType});
+                AuthenticationType.SQLAuthenticationType,
+                AuthenticationType.WindowsAuthenticationType});
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
@@ -35,13 +35,13 @@ namespace RemoteQuery.WinForms
 
         private string getStringConnection()
         {
-            return ((IConnectionStringType)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
+            return ((IAuthenticationType)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
         }
 
         private void cmbConnectionType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var usernameState = ((IConnectionStringType)cmbConnectionType.SelectedItem).GetUserNameState();
-            var passwordState = ((IConnectionStringType)cmbConnectionType.SelectedItem).GetUserPasswordState();
+            var usernameState = ((IAuthenticationType)cmbConnectionType.SelectedItem).GetUserNameState();
+            var passwordState = ((IAuthenticationType)cmbConnectionType.SelectedItem).GetUserPasswordState();
 
             tbUserName.ReadOnly = !usernameState.IsEditable;
             tbUserName.Text = usernameState.Name;

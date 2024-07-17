@@ -8,7 +8,7 @@ namespace RemoteQuery.Models
 {
     public class Credentials
     {
-        public ConnectionStringType ConnectionType { get; set; } = ConnectionStringType.WindowsConnectionStringType;
+        //public IAuthenticationType ConnectionType { get; set; } = AuthenticationType.WindowsAuthenticationType;
         public string UserName { get; set; } = "User";// string.Empty;
         public string Password { get; set; } = "Passs";// string.Empty;
     }
