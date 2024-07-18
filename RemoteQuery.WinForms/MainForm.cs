@@ -20,6 +20,8 @@ namespace RemoteQuery.WinForms
         {
             InitializeComponent();
             dgvResult.DataSource = bsResult;
+            cmbProvider.Items.AddRange(new object[] { "SQL" });
+            cmbProvider.SelectedIndex = 0;
             cmbConnectionType.DisplayMember = nameof(ConnectionStringType.DisplayName);
             cmbConnectionType.Items.AddRange(new object[] {
                 ConnectionStringType.SQLConnectionStringType,
