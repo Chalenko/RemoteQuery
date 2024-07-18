@@ -22,7 +22,9 @@ namespace RemoteQuery.WinForms
         {
             InitializeComponent();
             dgvResult.DataSource = bsResult;
-            cmbConnectionType.DisplayMember = nameof(AuthenticationType.DisplayName);
+            cmbProvider.Items.AddRange(new object[] { "SQL" });
+            cmbProvider.SelectedIndex = 0;
+            cmbConnectionType.DisplayMember = nameof(ConnectionStringType.DisplayName);
             cmbConnectionType.Items.AddRange(_provider.AuthenticationTypes.ToArray());
         }
 
