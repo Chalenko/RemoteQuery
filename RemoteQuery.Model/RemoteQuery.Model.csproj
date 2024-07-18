@@ -50,10 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IAuthenticationType.cs" />
-    <Compile Include="Models\AuthenticationType.cs" />
-    <Compile Include="Models\ConnectionString.cs" />
+    <Compile Include="Interfaces\IConnectionString.cs" />
+    <Compile Include="Interfaces\IDatabaseContext.cs" />
+    <Compile Include="Interfaces\IDbProvider.cs" />
+    <Compile Include="Models\Authentication\AuthenticationType.cs" />
+    <Compile Include="Models\Authentication\NativeAutentication.cs" />
+    <Compile Include="Models\Authentication\WindowsAuthentication.cs" />
     <Compile Include="Models\Credentials.cs" />
-    <Compile Include="Models\DatabaseContext.cs" />
+    <Compile Include="Models\DbProvider.cs" />
+    <Compile Include="Interfaces\ICredentials.cs" />
     <Compile Include="Models\RemoteQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RemoteQuery.Model
 {
-    public class Credentials : ICredentials
+    public interface IConnectionString
     {
-        public string UserName { get; set; } = "User";
-        public string Password { get; set; } = "Password";
+        string GetConnectionString();
     }
 }

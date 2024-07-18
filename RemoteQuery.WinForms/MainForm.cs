@@ -1,4 +1,5 @@
-﻿using RemoteQuery.Models;
+﻿using RemoteQuery.Model;
+using RemoteQuery.SQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,27 +14,26 @@ namespace RemoteQuery.WinForms
 {
     public partial class MainForm : Form
     {
-        DatabaseContext dbContext;
-        RemoteQuery.Models.RemoteQuery query;
+        private IDatabaseContext _dbContext;
+        RemoteQuery.Model.RemoteQuery query;
+        private IDbProvider _provider = new SQLProvider();
 
         public MainForm()
         {
             InitializeComponent();
             dgvResult.DataSource = bsResult;
             cmbConnectionType.DisplayMember = nameof(AuthenticationType.DisplayName);
-            cmbConnectionType.Items.AddRange(new object[] {
-                AuthenticationType.SQLAuthenticationType,
-                AuthenticationType.WindowsAuthenticationType});
+            cmbConnectionType.Items.AddRange(_provider.AuthenticationTypes.ToArray());
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
         {
-            dbContext = DatabaseContext.getInstance(getStringConnection());
-            bsResult.DataSource = dbContext.LoadFromDatabase(tbQuery.Text, CommandType.Text);
+            _dbContext = _provider.GetDbContext(GetStringConnection());
+            bsResult.DataSource = _dbContext.LoadFromDatabase(tbQuery.Text, CommandType.Text);
             tcMain.SelectedTab = tpResult;
         }
 
-        private string getStringConnection()
+        private string GetStringConnection()
         {
             return ((IAuthenticationType)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
         }

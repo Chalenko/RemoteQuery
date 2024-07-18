@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RemoteQuery.Models
+namespace RemoteQuery.Model
 {
     public class RemoteQuery
     {
-        private Credentials credentials = new Credentials();
-        public IAuthenticationType ConnectionType => credentials.ConnectionType;
-        public string UserName => credentials.UserName;
-        public string Password => credentials.Password;
-        public bool IsUserNameEditable => credentials.ConnectionType.GetUserNameState().IsEditable;
-        public bool IsPasswordEditable => credentials.ConnectionType.GetUserPasswordState().IsEditable;
+        private Credentials _credentials = new Credentials();
+        private ConnectionString _connectionString = new ConnectionString("");
+        public IAuthenticationType ConnectionType => _connectionString.ConnectionType;
+        public string UserName => _credentials.UserName;
+        public string Password => _credentials.Password;
+        //public bool IsUserNameEditable => _connectionString.ConnectionType.GetUserNameState().IsEditable;
+        //public bool IsPasswordEditable => _connectionString.ConnectionType.GetUserPasswordState().IsEditable;
 
         public string ServerName { get; set; } = string.Empty;
         public string DatabaseName { get; set; } = string.Empty;
