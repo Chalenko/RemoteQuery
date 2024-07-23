@@ -8,9 +8,9 @@ namespace RemoteQuery.Model
 {
     public class WindowsAuthenticationType : AuthenticationType
     {
-        protected static WindowsAuthenticationType _instance;
+        private static WindowsAuthenticationType _instance;
 
-        private WindowsAuthenticationType() //: base("Data Source={0}; Initial Catalog={1}; Integrated Security=True; Timeout=60000;") 
+        private WindowsAuthenticationType()
         {
             DisplayName = "Windows";
         }
@@ -24,15 +24,6 @@ namespace RemoteQuery.Model
                 //_items.Append(_instance);
                 return _instance;
             }
-        }
-        public override string GetConnectionFormat()
-        {
-            return string.Empty;// string.Format(_ConnectionString, serverName, dbName, userName, userPassword);
-        }
-
-        public override string GetConnectionString(string serverName, string dbName, string userName, string userPassword)
-        {
-            return string.Empty;// string.Format(_ConnectionString, serverName, dbName);
         }
 
         public override UserNameState GetUserNameState() => new UserNameState(string.Format("{0}\\{1}", Environment.UserDomainName, Environment.UserName), false);

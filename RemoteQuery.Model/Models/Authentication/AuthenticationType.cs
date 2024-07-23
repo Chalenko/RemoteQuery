@@ -16,10 +16,10 @@ namespace RemoteQuery.Model
             NativeAuthenticationType,
             WindowsAuthenticationType,
         };
+
         public static IEnumerable<IAuthenticationType> Items { get => _items.ToList(); }
 
-        public abstract string GetConnectionFormat();
-        public abstract string GetConnectionString(string serverName, string dbName, string userName, string userPassword);
+        //public abstract string GetFormattedCredentials(IConnectionString sQLConnectionString);
         public abstract UserNameState GetUserNameState();
         public abstract UserPasswordState GetUserPasswordState();
     }

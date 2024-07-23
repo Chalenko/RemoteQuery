@@ -8,9 +8,9 @@ namespace RemoteQuery.Model
 {
     public class NativeAuthenticationType : AuthenticationType
     {
-        protected static NativeAuthenticationType _instance;
+        private static NativeAuthenticationType _instance;
 
-        private NativeAuthenticationType() //: base("Data Source={0}; Initial Catalog={1}; User ID={2}; Password={3}; Timeout=60000;") 
+        private NativeAuthenticationType()
         {
             DisplayName = "Native";
         }
@@ -24,16 +24,6 @@ namespace RemoteQuery.Model
                 //_items.Append(_instance);
                 return _instance;
             }
-        }
-
-        public override string GetConnectionFormat()
-        {
-            return string.Empty;// string.Format(_ConnectionString, serverName, dbName, userName, userPassword);
-        }
-
-        public override string GetConnectionString(string serverName, string dbName, string userName, string userPassword)
-        {
-            return string.Empty;// string.Format(_ConnectionString, serverName, dbName, userName, userPassword);
         }
 
         public override UserNameState GetUserNameState() => new UserNameState(string.Empty, true);

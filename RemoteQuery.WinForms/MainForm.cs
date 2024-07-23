@@ -16,15 +16,16 @@ namespace RemoteQuery.WinForms
     {
         private IDatabaseContext _dbContext;
         RemoteQuery.Model.RemoteQuery query;
-        private IDbProvider _provider = new SQLProvider();
+        private IDbProvider _provider = SQLProvider.Instance;
 
         public MainForm()
         {
             InitializeComponent();
             dgvResult.DataSource = bsResult;
-            cmbProvider.Items.AddRange(new object[] { "SQL" });
+            cmbProvider.DisplayMember = nameof(DbProvider.ProviderName);
+            cmbProvider.Items.AddRange(new object[] { SQLProvider.Instance });
             cmbProvider.SelectedIndex = 0;
-            cmbConnectionType.DisplayMember = nameof(ConnectionStringType.DisplayName);
+            cmbConnectionType.DisplayMember = nameof(AuthenticationType.DisplayName);
             cmbConnectionType.Items.AddRange(_provider.AuthenticationTypes.ToArray());
         }
 
@@ -37,7 +38,7 @@ namespace RemoteQuery.WinForms
 
         private string GetStringConnection()
         {
-            return ((IAuthenticationType)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
+            return string.Empty;// ((IAuthenticationType)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
         }
 
         private void cmbConnectionType_SelectedIndexChanged(object sender, EventArgs e)

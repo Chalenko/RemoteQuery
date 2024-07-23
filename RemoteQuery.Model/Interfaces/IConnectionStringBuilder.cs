@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RemoteQuery.Model
 {
-    public interface IAuthenticationType
+    public interface IConnectionStringBuilder
     {
-        UserNameState GetUserNameState();
-        UserPasswordState GetUserPasswordState();
+        string BuildConnectionString();
     }
 }

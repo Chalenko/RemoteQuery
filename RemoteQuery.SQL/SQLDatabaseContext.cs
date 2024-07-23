@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RemoteQuery.Application;
+using RemoteQuery.Model;
 
 namespace RemoteQuery.SQL
 {
@@ -26,7 +27,7 @@ namespace RemoteQuery.SQL
         /// </summary>
         /// <param name="connection"> Строка подключения</param>
         /// <returns>Объект для работы с БД</returns>
-        public static DatabaseContext GetInstance(string connection)
+        public static IDatabaseContext GetInstance(string connection)
         {
             if (!_contexts.ContainsKey(connection)) 
                 _contexts.Add(connection, new SQLDatabaseContext(connection));
@@ -38,7 +39,7 @@ namespace RemoteQuery.SQL
         /// </summary>
         /// <param name="connection">SqlConnection объект</param>
         /// <returns>Объект для работы с БД</returns>
-        public static DatabaseContext GetInstance(SqlConnection connection)
+        public static IDatabaseContext GetInstance(SqlConnection connection)
         {
             return GetInstance(connection.ConnectionString);
         }

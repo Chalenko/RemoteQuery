@@ -8,6 +8,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WinForms", "RemoteQuery.WinForms\RemoteQuery.WinForms.csproj", "{EEFD6EAE-50F0-4C69-A36B-E754F87FAEA1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F} = {4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}
+		{D98D1449-A59E-4F05-A486-FF5FA8204C75} = {D98D1449-A59E-4F05-A486-FF5FA8204C75}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.WebForms", "RemoteQuery.WebForms\RemoteQuery.WebForms.csproj", "{3D70C53B-9BCE-43CB-B652-F920C6230246}"
@@ -33,6 +34,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastrucure", "Infrastrucure", "{FC28428E-91A9-4357-975F-F8CF37D9D749}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.SQL", "RemoteQuery.SQL\RemoteQuery.SQL.csproj", "{D38718F5-AC10-4A3C-AF4A-60552838FB2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteQuery.ViewModel", "RemoteQuery.ViewModel\RemoteQuery.ViewModel.csproj", "{D98D1449-A59E-4F05-A486-FF5FA8204C75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +71,10 @@ Global
 		{D38718F5-AC10-4A3C-AF4A-60552838FB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D38718F5-AC10-4A3C-AF4A-60552838FB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D38718F5-AC10-4A3C-AF4A-60552838FB2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D98D1449-A59E-4F05-A486-FF5FA8204C75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D98D1449-A59E-4F05-A486-FF5FA8204C75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D98D1449-A59E-4F05-A486-FF5FA8204C75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D98D1449-A59E-4F05-A486-FF5FA8204C75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +86,7 @@ Global
 		{081E0948-1459-4954-9BF6-758C14CB14BA} = {1F2A0131-13FE-406F-BB01-2F18E6D4D4F9}
 		{2BD26114-B352-46B8-AEA0-131ED1FA024D} = {CBAC56B7-FC34-44A1-AED2-CEE6043A2B49}
 		{D38718F5-AC10-4A3C-AF4A-60552838FB2E} = {FC28428E-91A9-4357-975F-F8CF37D9D749}
+		{D98D1449-A59E-4F05-A486-FF5FA8204C75} = {DC18CE20-91B4-4C19-868F-A87019FC4B26}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6479025A-4E0A-44A7-AB3A-A741A4E0E381}

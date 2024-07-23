@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace RemoteQuery.Model
 {
-    public abstract class DbProvider : IDbProvider
+    public abstract partial class DbProvider : IDbProvider
     {
-        protected static IEnumerable<string> _items = new List<string>();
-        public static IEnumerable<string> Items { get => _items.ToList(); }
+        //protected static IEnumerable<DbProvider> _items = new List<DbProvider>();
+        //public static IEnumerable<DbProvider> Items { get => _items.ToList(); }
 
         public abstract string ProviderName { get; }
 

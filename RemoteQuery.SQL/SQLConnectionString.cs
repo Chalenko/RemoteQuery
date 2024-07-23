@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace RemoteQuery.SQL
 {
-    public class SQLConnectionString : IConnectionString
+    public sealed class SQLConnectionString : IConnectionString
     {
-        private readonly string _baseConnectionString = "Data Source={0}; Initial Catalog={1}; Timeout=60000;";
-
         public IAuthenticationType ConnectionType { get; set; }// = AuthenticationType.WindowsAuthenticationType;
         public ICredentials Credentials { get; set; }// = new Credentials();
         public string ServerName { get; set; }
@@ -23,8 +21,9 @@ namespace RemoteQuery.SQL
 
         public string GetConnectionString()
         {
-            return string.Empty;
+            return new SQLConnectionStringBuilder(this).BuildConnectionString();
         }
+
         //public abstract UserNameState GetUserNameState();
         //public abstract UserPasswordState GetUserPasswordState();
     }

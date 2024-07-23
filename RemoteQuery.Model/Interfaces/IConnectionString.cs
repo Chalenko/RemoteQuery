@@ -8,6 +8,9 @@ namespace RemoteQuery.Model
 {
     public interface IConnectionString
     {
+        IAuthenticationType ConnectionType { get; }
+        ICredentials Credentials { get; }
+
         string GetConnectionString();
     }
 }

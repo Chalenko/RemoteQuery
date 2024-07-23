@@ -8,8 +8,8 @@ namespace RemoteQuery.Model
 {
     public class RemoteQuery
     {
-        private Credentials _credentials = new Credentials();
-        private ConnectionString _connectionString = new ConnectionString("");
+        private ICredentials _credentials = new Credentials();
+        private IConnectionString _connectionString;// = new SQLConnectionString("");
         public IAuthenticationType ConnectionType => _connectionString.ConnectionType;
         public string UserName => _credentials.UserName;
         public string Password => _credentials.Password;
@@ -21,6 +21,6 @@ namespace RemoteQuery.Model
         public string QueryText { get; set; } = "Select 1";//string.Empty;
         public object Result { get; set; } = null;
 
-        public string GetConnectionString() => ConnectionType.GetConnectionString(ServerName, DatabaseName, UserName, Password);
+        public string GetConnectionString() => string.Empty;// _connectionString.GetConnectionString(ServerName, DatabaseName, UserName, Password);
     }
 }

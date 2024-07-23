@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IAuthenticationType.cs" />
     <Compile Include="Interfaces\IConnectionString.cs" />
+    <Compile Include="Interfaces\IConnectionStringBuilder.cs" />
     <Compile Include="Interfaces\IDatabaseContext.cs" />
     <Compile Include="Interfaces\IDbProvider.cs" />
     <Compile Include="Models\Authentication\AuthenticationType.cs" />
