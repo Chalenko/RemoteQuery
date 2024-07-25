@@ -1,20 +1,23 @@
 ﻿using RemoteQuery.Model;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
-namespace RemoteQuery.SQL
+namespace RemoteQuery.Model
 {
     public sealed class SQLProvider : DbProvider
     {
         private const string _providerName = "SQL";
         public override string ProviderName => _providerName;
+        //public override string ProviderName => _provider.GetType().GetField(nameof(DbProviderEnum.SQL)).GetCustomAttribute<DescriptionAttribute>().Description;
 
         private readonly IEnumerable<IAuthenticationType> _authenticationTypes = 
             new List<IAuthenticationType>() { AuthenticationType.WindowsAuthenticationType, AuthenticationType.NativeAuthenticationType.WithDisplayName(_providerName) };
         public override IEnumerable<IAuthenticationType> AuthenticationTypes => _authenticationTypes;
 
         private static SQLProvider _instance;
-        private SQLProvider() //: base("Data Source={0}; Initial Catalog={1}; User ID={2}; Password={3}; Timeout=60000;") 
+        private SQLProvider() : base(DbProviderEnum.SQL) 
         {
             
         }
@@ -30,9 +33,20 @@ namespace RemoteQuery.SQL
             }
         }
 
-        public override IDatabaseContext GetDbContext(string connectionString)
+        //public override IDatabaseContext GetDbContext(string connectionString)
+        //{
+        //    return SQLDatabaseContext.GetInstance(connectionString);
+        //}
+    }
+
+    public partial class DbProvider
+    {
+        public static SQLProvider SQLProvider
         {
-            return SQLDatabaseContext.GetInstance(connectionString);
+            get
+            {
+                return SQLProvider.Instance;
+            }
         }
     }
 }

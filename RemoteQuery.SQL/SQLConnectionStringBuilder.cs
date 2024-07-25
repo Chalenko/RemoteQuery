@@ -5,46 +5,46 @@ using System.Xml.Linq;
 
 namespace RemoteQuery.SQL
 {
-    internal class SQLConnectionStringBuilder : IConnectionStringBuilder
+    public class SQLConnectionStringBuilder : IConnectionStringBuilder
     {
-        private readonly string _baseConnectionString = "Data Source={0}; Initial Catalog={1}; Timeout=60000;";
-        private readonly string _baseIntegratedSecurityPath = "Integrated Security = {0);";
-        private readonly string _baseCredentialPath = "User ID={0}; Password={1};";
+        private readonly string _baseConnectionString = "Data Source={0}; Initial Catalog={1}; Timeout=60000";
+        private readonly string _baseIntegratedSecurityPath = "Integrated Security = {0}";
+        private readonly string _baseCredentialPath = "User ID={0}; Password={1}";
 
-        private SQLConnectionString _connectionString;
+        //private SQLConnectionData _connectionString;
 
-        public SQLConnectionStringBuilder(SQLConnectionString connectionString)
+        //public SQLConnectionStringBuilder(SQLConnectionData connectionString)
+        //{
+        //    _connectionString = connectionString;
+        //}
+
+        public string BuildConnectionString(IConnectionData connectionData)
         {
-            _connectionString = connectionString;
-        }
-
-        public string BuildConnectionString()
-        {
-            var strBuilder = new StringBuilder(GetBasePath());
-            if (_connectionString.ConnectionType == AuthenticationType.WindowsAuthenticationType)
+            var strBuilder = new StringBuilder(GetBasePath(connectionData));
+            if (connectionData.ConnectionType == AuthenticationType.WindowsAuthenticationType)
                 strBuilder = strBuilder
                     .Append("; ")
-                    .Append(GetIntegratedSecurityPath());
-            if (_connectionString.ConnectionType == AuthenticationType.NativeAuthenticationType)
+                    .Append(GetIntegratedSecurityPath(connectionData));
+            if (connectionData.ConnectionType == AuthenticationType.NativeAuthenticationType)
                 strBuilder = strBuilder
                     .Append("; ")
-                    .Append(GetCredentialPath());
+                    .Append(GetCredentialPath(connectionData));
             return strBuilder.ToString();
         }
 
-        public string GetBasePath()
+        public string GetBasePath(IConnectionData connectionData)
         {
-            return string.Format(_baseConnectionString, _connectionString.ServerName, _connectionString.DBName);
+            return string.Format(_baseConnectionString, connectionData.ServerName, connectionData.DBName);
         }
 
-        public string GetIntegratedSecurityPath()
+        public string GetIntegratedSecurityPath(IConnectionData connectionData)
         {
             return string.Format(_baseIntegratedSecurityPath, bool.TrueString);
         }
 
-        public string GetCredentialPath()
+        public string GetCredentialPath(IConnectionData connectionData)
         {
-            return string.Format(_baseCredentialPath, _connectionString.Credentials.UserName, _connectionString.Credentials.Password);
+            return string.Format(_baseCredentialPath, connectionData.Credentials.UserName, connectionData.Credentials.Password);
         }
     }
 }

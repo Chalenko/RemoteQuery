@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,13 +10,46 @@ namespace RemoteQuery.Model
 {
     public abstract partial class DbProvider : IDbProvider
     {
-        //protected static IEnumerable<DbProvider> _items = new List<DbProvider>();
-        //public static IEnumerable<DbProvider> Items { get => _items.ToList(); }
+        protected DbProviderEnum _provider;
+        protected static Dictionary<DbProviderEnum, DbProvider> _items = new Dictionary<DbProviderEnum, DbProvider>()
+        {
+           { DbProviderEnum.SQL, DbProvider.SQLProvider },
+        };
+        public static IEnumerable<DbProvider> Items { get => _items.Values.ToList(); }
 
         public abstract string ProviderName { get; }
 
         public abstract IEnumerable<IAuthenticationType> AuthenticationTypes { get; }
 
-        public abstract IDatabaseContext GetDbContext(string connectionString);
+        protected DbProvider(DbProviderEnum provider) 
+        {
+            _provider = provider;
+        }
+
+        //public abstract IConnectionData CreateConnectionData();
+
+        //public abstract IDatabaseContext GetDbContext(string connectionString);
+
+        //public static IDbProvider GetProviderByName(DbProviderEnum provider)
+        //{
+        //    return _items[provider];
+        //}
     }
+
+    public enum DbProviderEnum
+    {
+        [Description("SQL")]
+        SQL = 0
+
+        //public abstract IDatabaseContext GetDbContext(string connectionString);
+    }
+
+    //public static class ConcreteProviderExtensions
+    //{
+    //    // Extension method to get the next day of the week
+    //    public static IDatabaseContext GetDbContext(this Provider provider, string connectionString)
+    //    {
+
+    //    }
+    //}
 }

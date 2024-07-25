@@ -46,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs">
+    <Compile Include="RemoteQueryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="RemoteQueryForm.Designer.cs">
+      <DependentUpon>RemoteQueryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="RemoteQueryForm.resx">
+      <DependentUpon>RemoteQueryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,6 +66,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\RemoteQuery.Model.AuthenticationType.datasource" />
+    <None Include="Properties\DataSources\RemoteQuery.Model.DbProvider.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,6 +89,10 @@
     <ProjectReference Include="..\RemoteQuery.SQL\RemoteQuery.SQL.csproj">
       <Project>{D38718F5-AC10-4A3C-AF4A-60552838FB2E}</Project>
       <Name>RemoteQuery.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RemoteQuery.ViewModel\RemoteQuery.ViewModel.csproj">
+      <Project>{D98D1449-A59E-4F05-A486-FF5FA8204C75}</Project>
+      <Name>RemoteQuery.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

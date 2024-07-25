@@ -12,7 +12,7 @@ namespace RemoteQuery.Model
 
         private NativeAuthenticationType()
         {
-            DisplayName = "Native";
+            //_displayName = "Native";
         }
 
         public static NativeAuthenticationType Instance

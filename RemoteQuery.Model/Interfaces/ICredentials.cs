@@ -2,7 +2,7 @@
 {
     public interface ICredentials
     {
-        string UserName { get; }
-        string Password { get; }
+        string UserName { get; set; }
+        string Password { get; set; }
     }
 }
