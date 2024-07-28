@@ -21,65 +21,31 @@ namespace RemoteQuery.WinForms
         //private IDbProvider _provider = SQLProvider.Instance;
         private RemoteQueryViewModel _viewModel = new RemoteQueryViewModel();
         private readonly string _tsslblConnectionBaseText = "Соединение: ";
+        private readonly string _tsslblStatusBaseText = "Состояние: ";
 
         public RemoteQueryForm()
         {
             InitializeComponent();
 
-            this.cmbProvider.DisplayMember = nameof(RemoteQuery.Model.DbProvider.ProviderName);
-            this.cmbConnectionType.DisplayMember = nameof(RemoteQuery.Model.AuthenticationType.DisplayName);
-
-            //binding.FormatString = "C2";
-            //binding.FormattingEnabled = true;
-
+            dgvResult.DataSource = bsResult;
             bsProviders.DataSource = DbProvider.Items;
-            //cmbProvider.DisplayMember = nameof(DbProvider.ProviderName);
-            //cmbProvider.Items.AddRange(new object[] { SQLProvider.Instance });
-            //cmbProvider.SelectedIndex = 0;
 
-            //cmbConnectionType.DisplayMember = nameof(AuthenticationType.DisplayName);
-            //cmbConnectionType.Items.AddRange(_provider.AuthenticationTypes.ToArray());
-            Bind();
+            BindConnectionData();
             Backbind();
         }
 
-        private void btnExecute_Click(object sender, EventArgs e)
-        {
-            //_dbContext = _provider.GetDbContext(GetStringConnection());
-            //bsResult.DataSource = _dbContext.LoadFromDatabase(tbQuery.Text, CommandType.Text);
-            //tcMain.SelectedTab = tpResult;
-        }
-
-        private string GetStringConnection()
-        {
-            return string.Empty;// ((IAuthenticationType)cmbConnectionType.SelectedItem).GetConnectionString(tbServerName.Text.Trim(), tbDBName.Text.Trim(), tbUserName.Text.Trim(), tbUserPassword.Text.Trim());
-        }
-
-        private void cmbProvider_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Bind();
-            Backbind();
-        }
-
-        private void cmbConnectionType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Bind();
-            Backbind();
-            //var usernameState = ((IAuthenticationType)cmbConnectionType.SelectedItem).GetUserNameState();
-            //var passwordState = ((IAuthenticationType)cmbConnectionType.SelectedItem).GetUserPasswordState();
-
-            //tbUserName.ReadOnly = !usernameState.IsEditable;
-            //tbUserName.Text = usernameState.Name;
-            //tbUserPassword.ReadOnly = !passwordState.IsEditable;
-            //tbUserPassword.Text = passwordState.Password;
-        }
-
-        private void Bind()
+        private void BindConnectionData()
         {
             _viewModel.RemoteQuery.Provider = (IDbProvider)cmbProvider.SelectedItem;
             _viewModel.RemoteQuery.ConnectionType = (IAuthenticationType)cmbConnectionType.SelectedItem;
             _viewModel.RemoteQuery.ConnectionData.ServerName = tbServerName.Text;
             _viewModel.RemoteQuery.ConnectionData.DBName = tbDBName.Text;
+            _viewModel.RemoteQuery.QueryText = tbQuery.Text;
+        }
+
+        private void BindQueryData()
+        {
+            _viewModel.RemoteQuery.QueryText = tbQuery.Text;
         }
 
         private void Backbind()
@@ -91,23 +57,63 @@ namespace RemoteQuery.WinForms
             tbUserPassword.Enabled = _viewModel.RemoteQuery.ConnectionType.GetUserPasswordState().IsEditable;
             tsslblConection.Text = 
                 _viewModel.IsTestConnectionEnabled 
-                ? string.Concat(_tsslblConnectionBaseText, _viewModel.RemoteQuery.ConnectionData.GetConnectionString()) 
+                ? string.Concat(_tsslblConnectionBaseText, _viewModel.ConnectionString) 
                 : string.Concat(_tsslblConnectionBaseText, string.Empty);
+            tsslblStatus.Text =
+                _viewModel.IsTestConnectionEnabled
+                ? string.Concat(_tsslblStatusBaseText, _viewModel.ConnectionStatus)
+                : string.Concat(_tsslblStatusBaseText, string.Empty);
             btnConnect.Enabled = _viewModel.IsTestConnectionEnabled;
             btnExecute.Enabled = _viewModel.IsExecuteEnabled;
-            
+            //bsResult.DataSource = _viewModel.RemoteQuery.Result;
+        }
+
+        private void cmbProvider_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindConnectionData();
+            Backbind();
+        }
+
+        private void cmbConnectionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindConnectionData();
+            Backbind();
         }
 
         private void tbServerName_TextChanged(object sender, EventArgs e)
         {
-            Bind();
+            BindConnectionData();
             Backbind();
         }
 
         private void tbDBName_TextChanged(object sender, EventArgs e)
         {
-            Bind();
+            BindConnectionData();
             Backbind();
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            BindConnectionData();
+            _viewModel.TryConnect();
+            Backbind();
+        }
+
+        private void tbQuery_TextChanged(object sender, EventArgs e)
+        {
+            BindQueryData();
+            Backbind();
+        }
+
+        private void btnExecute_Click(object sender, EventArgs e)
+        {
+            //BindConnectionData();
+            //BindQueryData();
+            dgvResult.DataSource = _viewModel.DBContext.LoadFromDatabase(_viewModel.RemoteQuery.QueryText, CommandType.Text);
+            //bsResult.DataSource = _viewModel.DBContext.LoadFromDatabase(_viewModel.RemoteQuery.QueryText, CommandType.Text);
+            //_viewModel.ExecuteQuery();
+            Backbind();
+            //tcMain.SelectedTab = tpResult;
         }
     }
 }

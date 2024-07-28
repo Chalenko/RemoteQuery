@@ -201,6 +201,7 @@
             this.tbQuery.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbQuery.Size = new System.Drawing.Size(783, 256);
             this.tbQuery.TabIndex = 0;
+            this.tbQuery.TextChanged += new System.EventHandler(this.tbQuery_TextChanged);
             // 
             // tcMain
             // 
@@ -237,6 +238,7 @@
             this.btnConnect.TabIndex = 2;
             this.btnConnect.Text = "Тест соединения";
             this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // btnExecute
             // 
@@ -266,7 +268,7 @@
             this.dgvResult.AllowUserToDeleteRows = false;
             this.dgvResult.AutoGenerateColumns = false;
             this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResult.DataSource = this.bsResult;
+            //this.dgvResult.DataSource = this.bsResult;
             this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResult.Location = new System.Drawing.Point(3, 3);
             this.dgvResult.Name = "dgvResult";
@@ -278,6 +280,7 @@
             this.cmbProvider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbProvider.DataSource = this.bsProviders;
+            this.cmbProvider.DisplayMember = "ProviderName";
             this.cmbProvider.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProvider.FormattingEnabled = true;
             this.cmbProvider.Location = new System.Drawing.Point(150, 12);

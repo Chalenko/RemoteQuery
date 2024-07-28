@@ -13,5 +13,10 @@ namespace RemoteQuery.SQL
         {
             return new SQLConnectionData();
         }
+
+        public IDatabaseContext GetDbContext(Model.RemoteQuery query)
+        {
+            return SQLDatabaseContext.GetInstance(query.ConnectionData.GetConnectionString());
+        }
     }
 }

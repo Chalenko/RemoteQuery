@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace RemoteQuery.Model
 {
-    public class RemoteQuery : INotifyPropertyChanged
+    public class RemoteQuery //: INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangedEventHandler ProviderChanged;
+        public event PropertyChangedEventHandler ConnectionDataChanged;
+        public event PropertyChangedEventHandler QueryTextChanged;
 
         public IDBRemoteQueryFactory RemoteQueryFactory { get; set; }
 
@@ -27,7 +28,7 @@ namespace RemoteQuery.Model
                 if (ProviderChanged != null)
                     ProviderChanged(this, new PropertyChangedEventArgs(nameof(Provider)));
                 ConnectionData = RemoteQueryFactory.CreateConnectionData();
-                ConnectionData.PropertyChanged += PropertyChanged;
+                ConnectionData.PropertyChanged += ConnectionDataChanged;
             }
         }
 
@@ -41,18 +42,19 @@ namespace RemoteQuery.Model
             set 
             {
                 ConnectionData.ConnectionType = value;
-                OnPropertyChanged(nameof(ConnectionType));
+                OnConnectionDataChanged(nameof(ConnectionType));
             }
         }
 
-        private string _queryText = "Select 1";
+        private string _queryText = string.Empty;
         public string QueryText 
         {
             get => _queryText;
             set
             {
                 _queryText = value;
-                OnPropertyChanged(nameof(QueryText));
+                if (QueryTextChanged != null)
+                    QueryTextChanged(this, new PropertyChangedEventArgs(nameof(QueryText)));
             }
         }
 
@@ -63,14 +65,14 @@ namespace RemoteQuery.Model
             set
             {
                 _result = value;
-                OnPropertyChanged(nameof(Result));
+                //OnPropertyChanged(nameof(Result));
             }
         }
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        private void OnConnectionDataChanged([CallerMemberName] string propertyName = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (ConnectionDataChanged != null)
+                ConnectionDataChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

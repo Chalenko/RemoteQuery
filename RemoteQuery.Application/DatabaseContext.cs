@@ -21,6 +21,8 @@ namespace RemoteQuery.Application
         /// </summary>
         protected IDbConnection _connection;
 
+        public string Status { get; protected set; }
+
         ///// <summary>
         ///// Список реализованных провайдеров
         ///// </summary>
@@ -58,6 +60,30 @@ namespace RemoteQuery.Application
         }
 
         /// <summary>
+        /// Попытка подключения
+        /// </summary>
+        /// <exception cref="System.InvalidOperationException">Невозможно открыть подключение</exception>
+        public void Connect()
+        {
+            IDbCommand command = null;
+            try
+            {
+                command = CreateCommand(string.Empty, CommandType.Text);
+                command.Connection.Open();
+                Status = command.Connection.State.ToString();
+                command.Connection.Close();
+            }
+            catch
+            {
+                Status = command?.Connection.State.ToString() ?? string.Empty;
+            }
+            finally
+            {
+                command?.Dispose();
+            }
+        }
+
+        /// <summary>
         /// Выполняет команду и возвращает количество задействованных строк
         /// </summary>
         /// <param name="command">Экземпляр команды</param>
@@ -81,6 +107,7 @@ namespace RemoteQuery.Application
             try
             {
                 command.Connection.Open();
+                Status = command.Connection.State.ToString();
                 rowCount = command.ExecuteNonQuery();
             }
             finally
@@ -148,6 +175,7 @@ namespace RemoteQuery.Application
             try
             {
                 command.Connection.Open();
+                Status = command.Connection.State.ToString();
                 result = command.ExecuteScalar();
             }
             finally
@@ -217,6 +245,7 @@ namespace RemoteQuery.Application
             try
             {
                 command.Connection.Open();
+                Status = command.Connection.State.ToString();
                 table.Load(command.ExecuteReader());
             }
             finally
@@ -325,6 +354,7 @@ namespace RemoteQuery.Application
                 
             command.Transaction = transaction;
             rowCount = command.ExecuteNonQuery();
+            Status = command.Connection.State.ToString();
 
             return rowCount;
         }

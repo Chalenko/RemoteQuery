@@ -10,6 +10,7 @@ namespace RemoteQuery.Model
 {
     public interface IDatabaseContext
     {
+        string Status { get; }
 
         /// <summary>
         /// Создание экземпляра IDbCommand по параметрам
@@ -28,6 +29,12 @@ namespace RemoteQuery.Model
         /// <param name="parameters">Параметры запроса</param>
         /// <returns>Команда, готовая к выполнению</returns>
         IDbCommand CreateCommand(string commandText, CommandType commandType, List<IDbDataParameter> parameters);
+
+        /// <summary>
+        /// Попытка подключения
+        /// </summary>
+        /// <exception cref="System.InvalidOperationException">Невозможно открыть подключение</exception>
+        void Connect();
 
         /// <summary>
         /// Выполняет команду и возвращает количество задействованных строк
