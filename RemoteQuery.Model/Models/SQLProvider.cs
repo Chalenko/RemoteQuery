@@ -10,7 +10,6 @@ namespace RemoteQuery.Model
     {
         private const string _providerName = "SQL";
         public override string ProviderName => _providerName;
-        //public override string ProviderName => _provider.GetType().GetField(nameof(DbProviderEnum.SQL)).GetCustomAttribute<DescriptionAttribute>().Description;
 
         private readonly IEnumerable<IAuthenticationType> _authenticationTypes = 
             new List<IAuthenticationType>() { AuthenticationType.WindowsAuthenticationType, AuthenticationType.NativeAuthenticationType.WithDisplayName(_providerName) };
@@ -28,15 +27,9 @@ namespace RemoteQuery.Model
             {
                 if (_instance == null)
                     _instance = new SQLProvider();
-                //_items = _items.Append(_instance);
                 return _instance;
             }
         }
-
-        //public override IDatabaseContext GetDbContext(string connectionString)
-        //{
-        //    return SQLDatabaseContext.GetInstance(connectionString);
-        //}
     }
 
     public partial class DbProvider

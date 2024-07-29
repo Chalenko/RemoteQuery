@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RemoteQuery.Model
 {
-    public class RemoteQuery //: INotifyPropertyChanged
+    public class RemoteQuery
     {
         public event PropertyChangedEventHandler ProviderChanged;
         public event PropertyChangedEventHandler ConnectionDataChanged;
@@ -22,8 +22,6 @@ namespace RemoteQuery.Model
             get => _provider;
             set
             {
-                //if (value == null)
-                //    return;
                 _provider = value;
                 if (ProviderChanged != null)
                     ProviderChanged(this, new PropertyChangedEventArgs(nameof(Provider)));
@@ -65,7 +63,6 @@ namespace RemoteQuery.Model
             set
             {
                 _result = value;
-                //OnPropertyChanged(nameof(Result));
             }
         }
 

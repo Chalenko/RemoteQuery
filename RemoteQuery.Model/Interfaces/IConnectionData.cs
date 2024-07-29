@@ -12,18 +12,9 @@ namespace RemoteQuery.Model
         IAuthenticationType ConnectionType { get; set; }
         ICredentials Credentials { get; }
         IConnectionStringBuilder ConnectionStringBuilder { set; }
-
-        string GetConnectionString();
-        bool IsValid();
-
-
-
-
-
-
-
-
         string ServerName { get; set; }
         string DBName { get; set; }
+        string GetConnectionString();
+        bool IsValid();
     }
 }

@@ -11,9 +11,5 @@ namespace RemoteQuery.Model
         string ProviderName { get; }
 
         IEnumerable<IAuthenticationType> AuthenticationTypes { get; }
-
-        //IConnectionData CreateConnectionData();
-
-        //IDatabaseContext GetDbContext(string connectionString);
     }
 }

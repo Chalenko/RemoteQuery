@@ -13,13 +13,8 @@ using System.Threading.Tasks;
 
 namespace RemoteQuery.ViewModel
 {
-    public class RemoteQueryViewModel //: INotifyPropertyChanged
+    public class RemoteQueryViewModel
     {
-        private readonly string _connectionBaseText = "Соединение: ";
-        private readonly string _statusBaseText = "Состояние: ";
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
         public Model.RemoteQuery RemoteQuery { get; set; } = new Model.RemoteQuery();
         public IDatabaseContext DBContext { get; set; } = null;
 
@@ -45,7 +40,6 @@ namespace RemoteQuery.ViewModel
             RemoteQuery.ProviderChanged += RemoteQuery_ProviderChanged;
             RemoteQuery.ConnectionDataChanged += RemoteQuery_ConnectionDataChanged;
             RemoteQuery.QueryTextChanged += RemoteQuery_QueryTextChanged;
-            //RemoteQuery.ConnectionData.PropertyChanged += RemoteQuery_PropertyChanged;
         }
 
         private void RemoteQuery_ProviderChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -83,20 +77,5 @@ namespace RemoteQuery.ViewModel
             DBContext = RemoteQuery.RemoteQueryFactory.GetDbContext(RemoteQuery);
             RemoteQuery.Result = DBContext.LoadFromDatabase(RemoteQuery.QueryText, CommandType.Text);
         }
-
-
-        //public IEnumerable<IDbProvider> Providers { get; set; }
-
-        //public IDbProvider DelectedProvider { get; set; }
-
-        //public IEnumerable<IAuthenticationType> AuthenticationTypes { get; set; }
-
-        //public IAuthenticationType AuthenticationType { get; set; }
-
-        //public IConnectionString ConnectionString { get; set; }
-
-        //public string ServerName { get; set; }
-
-        //public string UserName { get; set; }
     }
 }

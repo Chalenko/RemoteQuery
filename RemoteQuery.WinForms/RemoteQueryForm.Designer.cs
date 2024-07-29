@@ -66,6 +66,33 @@
             this.ssConnection.SuspendLayout();
             this.SuspendLayout();
             // 
+            // lblProvider
+            // 
+            this.lblProvider.AutoSize = true;
+            this.lblProvider.Location = new System.Drawing.Point(18, 15);
+            this.lblProvider.Name = "lblProvider";
+            this.lblProvider.Size = new System.Drawing.Size(63, 13);
+            this.lblProvider.TabIndex = 3;
+            this.lblProvider.Text = "Провайдер";
+            // 
+            // cmbProvider
+            // 
+            this.cmbProvider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbProvider.DataSource = this.bsProviders;
+            this.cmbProvider.DisplayMember = "ProviderName";
+            this.cmbProvider.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProvider.FormattingEnabled = true;
+            this.cmbProvider.Location = new System.Drawing.Point(150, 12);
+            this.cmbProvider.Name = "cmbProvider";
+            this.cmbProvider.Size = new System.Drawing.Size(663, 21);
+            this.cmbProvider.TabIndex = 2;
+            this.cmbProvider.SelectedIndexChanged += new System.EventHandler(this.cmbProvider_SelectedIndexChanged);
+            // 
+            // bsProviders
+            // 
+            this.bsProviders.DataSource = typeof(RemoteQuery.Model.DbProvider);
+            // 
             // gbConnection
             // 
             this.gbConnection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -87,6 +114,25 @@
             this.gbConnection.TabStop = false;
             this.gbConnection.Text = "Подключение";
             // 
+            // lblServerName
+            // 
+            this.lblServerName.AutoSize = true;
+            this.lblServerName.Location = new System.Drawing.Point(6, 23);
+            this.lblServerName.Name = "lblServerName";
+            this.lblServerName.Size = new System.Drawing.Size(44, 13);
+            this.lblServerName.TabIndex = 0;
+            this.lblServerName.Text = "Сервер";
+            // 
+            // tbServerName
+            // 
+            this.tbServerName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbServerName.Location = new System.Drawing.Point(138, 20);
+            this.tbServerName.Name = "tbServerName";
+            this.tbServerName.Size = new System.Drawing.Size(656, 20);
+            this.tbServerName.TabIndex = 1;
+            this.tbServerName.TextChanged += new System.EventHandler(this.tbServerName_TextChanged);
+            // 
             // lblDBName
             // 
             this.lblDBName.AutoSize = true;
@@ -105,6 +151,51 @@
             this.tbDBName.Size = new System.Drawing.Size(656, 20);
             this.tbDBName.TabIndex = 3;
             this.tbDBName.TextChanged += new System.EventHandler(this.tbDBName_TextChanged);
+            // 
+            // lblConnectionType
+            // 
+            this.lblConnectionType.AutoSize = true;
+            this.lblConnectionType.Location = new System.Drawing.Point(6, 75);
+            this.lblConnectionType.Name = "lblConnectionType";
+            this.lblConnectionType.Size = new System.Drawing.Size(96, 13);
+            this.lblConnectionType.TabIndex = 4;
+            this.lblConnectionType.Text = "Тип подключения";
+            // 
+            // cmbConnectionType
+            // 
+            this.cmbConnectionType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbConnectionType.DataSource = this.bsConnectionType;
+            this.cmbConnectionType.DisplayMember = "DisplayName";
+            this.cmbConnectionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConnectionType.FormattingEnabled = true;
+            this.cmbConnectionType.Location = new System.Drawing.Point(138, 72);
+            this.cmbConnectionType.Name = "cmbConnectionType";
+            this.cmbConnectionType.Size = new System.Drawing.Size(656, 21);
+            this.cmbConnectionType.TabIndex = 5;
+            this.cmbConnectionType.SelectedIndexChanged += new System.EventHandler(this.cmbConnectionType_SelectedIndexChanged);
+            // 
+            // bsConnectionType
+            // 
+            this.bsConnectionType.DataSource = typeof(RemoteQuery.Model.AuthenticationType);
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Location = new System.Drawing.Point(6, 102);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(103, 13);
+            this.lblUserName.TabIndex = 6;
+            this.lblUserName.Text = "Имя пользователя";
+            // 
+            // tbUserName
+            // 
+            this.tbUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUserName.Location = new System.Drawing.Point(138, 99);
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.Size = new System.Drawing.Size(656, 20);
+            this.tbUserName.TabIndex = 7;
             // 
             // lblUserPassword
             // 
@@ -126,87 +217,10 @@
             this.tbUserPassword.TabIndex = 9;
             this.tbUserPassword.UseSystemPasswordChar = true;
             // 
-            // lblUserName
-            // 
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(6, 102);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(103, 13);
-            this.lblUserName.TabIndex = 6;
-            this.lblUserName.Text = "Имя пользователя";
-            // 
-            // tbUserName
-            // 
-            this.tbUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbUserName.Location = new System.Drawing.Point(138, 99);
-            this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(656, 20);
-            this.tbUserName.TabIndex = 7;
-            // 
-            // lblServerName
-            // 
-            this.lblServerName.AutoSize = true;
-            this.lblServerName.Location = new System.Drawing.Point(6, 23);
-            this.lblServerName.Name = "lblServerName";
-            this.lblServerName.Size = new System.Drawing.Size(44, 13);
-            this.lblServerName.TabIndex = 0;
-            this.lblServerName.Text = "Сервер";
-            // 
-            // tbServerName
-            // 
-            this.tbServerName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbServerName.Location = new System.Drawing.Point(138, 20);
-            this.tbServerName.Name = "tbServerName";
-            this.tbServerName.Size = new System.Drawing.Size(656, 20);
-            this.tbServerName.TabIndex = 1;
-            this.tbServerName.TextChanged += new System.EventHandler(this.tbServerName_TextChanged);
-            // 
-            // lblConnectionType
-            // 
-            this.lblConnectionType.AutoSize = true;
-            this.lblConnectionType.Location = new System.Drawing.Point(6, 75);
-            this.lblConnectionType.Name = "lblConnectionType";
-            this.lblConnectionType.Size = new System.Drawing.Size(96, 13);
-            this.lblConnectionType.TabIndex = 4;
-            this.lblConnectionType.Text = "Тип подключения";
-            // 
-            // cmbConnectionType
-            // 
-            this.cmbConnectionType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbConnectionType.DataSource = this.bsConnectionType;
-            this.cmbConnectionType.DisplayMember = "DisplayName";
-            this.cmbConnectionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConnectionType.FormattingEnabled = true;
-            this.cmbConnectionType.Location = new System.Drawing.Point(138, 72);
-            this.cmbConnectionType.Name = "cmbConnectionType";
-            this.cmbConnectionType.Size = new System.Drawing.Size(656, 21);
-            this.cmbConnectionType.TabIndex = 5;
-            this.cmbConnectionType.SelectedIndexChanged += new System.EventHandler(this.cmbConnectionType_SelectedIndexChanged);
-            // 
-            // bsConnectionType
-            // 
-            this.bsConnectionType.DataSource = typeof(RemoteQuery.Model.AuthenticationType);
-            // 
-            // tbQuery
-            // 
-            this.tbQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbQuery.Location = new System.Drawing.Point(3, 6);
-            this.tbQuery.Multiline = true;
-            this.tbQuery.Name = "tbQuery";
-            this.tbQuery.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbQuery.Size = new System.Drawing.Size(783, 256);
-            this.tbQuery.TabIndex = 0;
-            this.tbQuery.TextChanged += new System.EventHandler(this.tbQuery_TextChanged);
-            // 
             // tcMain
             // 
-            this.tcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tcMain.Controls.Add(this.tpQuery);
             this.tcMain.Controls.Add(this.tpResult);
@@ -251,6 +265,19 @@
             this.btnExecute.UseVisualStyleBackColor = true;
             this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
             // 
+            // tbQuery
+            // 
+            this.tbQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbQuery.Location = new System.Drawing.Point(3, 6);
+            this.tbQuery.Multiline = true;
+            this.tbQuery.Name = "tbQuery";
+            this.tbQuery.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbQuery.Size = new System.Drawing.Size(783, 256);
+            this.tbQuery.TabIndex = 0;
+            this.tbQuery.TextChanged += new System.EventHandler(this.tbQuery_TextChanged);
+            // 
             // tpResult
             // 
             this.tpResult.Controls.Add(this.dgvResult);
@@ -266,41 +293,12 @@
             // 
             this.dgvResult.AllowUserToAddRows = false;
             this.dgvResult.AllowUserToDeleteRows = false;
-            this.dgvResult.AutoGenerateColumns = false;
             this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            //this.dgvResult.DataSource = this.bsResult;
             this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResult.Location = new System.Drawing.Point(3, 3);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.Size = new System.Drawing.Size(786, 292);
             this.dgvResult.TabIndex = 0;
-            // 
-            // cmbProvider
-            // 
-            this.cmbProvider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbProvider.DataSource = this.bsProviders;
-            this.cmbProvider.DisplayMember = "ProviderName";
-            this.cmbProvider.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbProvider.FormattingEnabled = true;
-            this.cmbProvider.Location = new System.Drawing.Point(150, 12);
-            this.cmbProvider.Name = "cmbProvider";
-            this.cmbProvider.Size = new System.Drawing.Size(663, 21);
-            this.cmbProvider.TabIndex = 2;
-            this.cmbProvider.SelectedIndexChanged += new System.EventHandler(this.cmbProvider_SelectedIndexChanged);
-            // 
-            // bsProviders
-            // 
-            this.bsProviders.DataSource = typeof(RemoteQuery.Model.DbProvider);
-            // 
-            // lblProvider
-            // 
-            this.lblProvider.AutoSize = true;
-            this.lblProvider.Location = new System.Drawing.Point(18, 15);
-            this.lblProvider.Name = "lblProvider";
-            this.lblProvider.Size = new System.Drawing.Size(63, 13);
-            this.lblProvider.TabIndex = 3;
-            this.lblProvider.Text = "Провайдер";
             // 
             // ssConnection
             // 

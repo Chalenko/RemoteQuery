@@ -25,31 +25,11 @@ namespace RemoteQuery.Model
         {
             _provider = provider;
         }
-
-        //public abstract IConnectionData CreateConnectionData();
-
-        //public abstract IDatabaseContext GetDbContext(string connectionString);
-
-        //public static IDbProvider GetProviderByName(DbProviderEnum provider)
-        //{
-        //    return _items[provider];
-        //}
     }
 
     public enum DbProviderEnum
     {
         [Description("SQL")]
         SQL = 0
-
-        //public abstract IDatabaseContext GetDbContext(string connectionString);
     }
-
-    //public static class ConcreteProviderExtensions
-    //{
-    //    // Extension method to get the next day of the week
-    //    public static IDatabaseContext GetDbContext(this Provider provider, string connectionString)
-    //    {
-
-    //    }
-    //}
 }

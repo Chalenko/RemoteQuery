@@ -16,9 +16,6 @@ namespace RemoteQuery.WinForms
 {
     public partial class RemoteQueryForm : Form
     {
-        //private IDatabaseContext _dbContext;
-        //RemoteQuery.Model.RemoteQuery query;
-        //private IDbProvider _provider = SQLProvider.Instance;
         private RemoteQueryViewModel _viewModel = new RemoteQueryViewModel();
         private readonly string _tsslblConnectionBaseText = "Соединение: ";
         private readonly string _tsslblStatusBaseText = "Состояние: ";
@@ -65,7 +62,7 @@ namespace RemoteQuery.WinForms
                 : string.Concat(_tsslblStatusBaseText, string.Empty);
             btnConnect.Enabled = _viewModel.IsTestConnectionEnabled;
             btnExecute.Enabled = _viewModel.IsExecuteEnabled;
-            //bsResult.DataSource = _viewModel.RemoteQuery.Result;
+            bsResult.DataSource = _viewModel.RemoteQuery.Result;
         }
 
         private void cmbProvider_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,13 +104,10 @@ namespace RemoteQuery.WinForms
 
         private void btnExecute_Click(object sender, EventArgs e)
         {
-            //BindConnectionData();
-            //BindQueryData();
-            dgvResult.DataSource = _viewModel.DBContext.LoadFromDatabase(_viewModel.RemoteQuery.QueryText, CommandType.Text);
-            //bsResult.DataSource = _viewModel.DBContext.LoadFromDatabase(_viewModel.RemoteQuery.QueryText, CommandType.Text);
-            //_viewModel.ExecuteQuery();
+            BindQueryData();
+            _viewModel.ExecuteQuery();
             Backbind();
-            //tcMain.SelectedTab = tpResult;
+            tcMain.SelectedTab = tpResult;
         }
     }
 }

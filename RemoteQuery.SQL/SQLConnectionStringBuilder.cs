@@ -11,13 +11,6 @@ namespace RemoteQuery.SQL
         private readonly string _baseIntegratedSecurityPath = "Integrated Security = {0}";
         private readonly string _baseCredentialPath = "User ID={0}; Password={1}";
 
-        //private SQLConnectionData _connectionString;
-
-        //public SQLConnectionStringBuilder(SQLConnectionData connectionString)
-        //{
-        //    _connectionString = connectionString;
-        //}
-
         public string BuildConnectionString(IConnectionData connectionData)
         {
             var strBuilder = new StringBuilder(GetBasePath(connectionData));

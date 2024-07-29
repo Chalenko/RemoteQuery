@@ -55,13 +55,6 @@ namespace RemoteQuery.SQL
             }
         }
 
-        public SQLConnectionData()
-        {
-            //PropertyChanged += ServerNameChanged; 
-            //PropertyChanged += DBNameChanged;
-            //_ConnectionString = connectionString;
-        }
-
         public string GetConnectionString()
         {
             return ConnectionStringBuilder.BuildConnectionString(this);
