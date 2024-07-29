@@ -8,6 +8,7 @@ namespace RemoteQuery.Model
 {
     public interface IAuthenticationType
     {
+        string DisplayName { get; }
         UserNameState GetUserNameState();
         UserPasswordState GetUserPasswordState();
     }

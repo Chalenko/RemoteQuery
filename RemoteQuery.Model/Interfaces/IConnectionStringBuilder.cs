@@ -8,6 +8,6 @@ namespace RemoteQuery.Model
 {
     public interface IConnectionStringBuilder
     {
-        string BuildConnectionString();
+        string BuildConnectionString(IConnectionData connectionData);
     }
 }

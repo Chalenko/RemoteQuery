@@ -1,8 +1,10 @@
 ﻿using RemoteQuery.Model;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
-namespace RemoteQuery.SQL
+namespace RemoteQuery.Model
 {
     public sealed class SQLProvider : DbProvider
     {
@@ -14,7 +16,7 @@ namespace RemoteQuery.SQL
         public override IEnumerable<IAuthenticationType> AuthenticationTypes => _authenticationTypes;
 
         private static SQLProvider _instance;
-        private SQLProvider() //: base("Data Source={0}; Initial Catalog={1}; User ID={2}; Password={3}; Timeout=60000;") 
+        private SQLProvider() : base(DbProviderEnum.SQL) 
         {
             
         }
@@ -25,14 +27,19 @@ namespace RemoteQuery.SQL
             {
                 if (_instance == null)
                     _instance = new SQLProvider();
-                //_items = _items.Append(_instance);
                 return _instance;
             }
         }
+    }
 
-        public override IDatabaseContext GetDbContext(string connectionString)
+    public partial class DbProvider
+    {
+        public static SQLProvider SQLProvider
         {
-            return SQLDatabaseContext.GetInstance(connectionString);
+            get
+            {
+                return SQLProvider.Instance;
+            }
         }
     }
 }

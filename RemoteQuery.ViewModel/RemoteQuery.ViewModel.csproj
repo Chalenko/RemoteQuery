@@ -42,6 +42,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoteQueryViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RemoteQuery.Model\RemoteQuery.Model.csproj">
+      <Project>{4C18CC8F-837A-4EFC-8E19-FF462BB99E5F}</Project>
+      <Name>RemoteQuery.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RemoteQuery.SQL\RemoteQuery.SQL.csproj">
+      <Project>{D38718F5-AC10-4A3C-AF4A-60552838FB2E}</Project>
+      <Name>RemoteQuery.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RemoteQuery.Utils\RemoteQuery.Utils.csproj">
+      <Project>{95353D55-2E2E-4977-90ED-3DE4607F65A7}</Project>
+      <Name>RemoteQuery.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,7 +21,6 @@ namespace RemoteQuery.Model
             {
                 if (_instance == null)
                     _instance = new WindowsAuthenticationType();
-                //_items.Append(_instance);
                 return _instance;
             }
         }

@@ -19,7 +19,6 @@ namespace RemoteQuery.Model
 
         public static IEnumerable<IAuthenticationType> Items { get => _items.ToList(); }
 
-        //public abstract string GetFormattedCredentials(IConnectionString sQLConnectionString);
         public abstract UserNameState GetUserNameState();
         public abstract UserPasswordState GetUserPasswordState();
     }
